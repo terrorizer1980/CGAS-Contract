@@ -31,6 +31,7 @@ namespace CGAS
             {
                 var tx = ExecutionEngine.ScriptContainer as Transaction;
                 var inputs = tx.GetInputs();
+                if (inputs == null || inputs.Length == 0) return false;
                 var outputs = tx.GetOutputs();
                 //Check if the input has been marked
                 var currentHash = ExecutionEngine.ExecutingScriptHash;
