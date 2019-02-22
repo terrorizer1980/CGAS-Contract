@@ -59,14 +59,14 @@ namespace CGAS
                 BigInteger inputAmount = 0;
                 foreach (var refe in tx.GetReferences())
                 {
-                    if (refe.ScriptHash.AsBigInteger() == currentHash.AsBigInteger())
+                    if (refe.AssetId.AsBigInteger() == AssetId.AsBigInteger() && refe.ScriptHash.AsBigInteger() == currentHash.AsBigInteger())
                         inputAmount += refe.Value;
                 }
                 //Check that there is no GAS left this contract
                 BigInteger outputAmount = 0;
                 foreach (var output in outputs)
                 {
-                    if (output.ScriptHash.AsBigInteger() == currentHash.AsBigInteger())
+                    if (output.AssetId.AsBigInteger() == AssetId.AsBigInteger() && output.ScriptHash.AsBigInteger() == currentHash.AsBigInteger())
                         outputAmount += output.Value;
                 }
                 return outputAmount == inputAmount;
@@ -268,7 +268,7 @@ namespace CGAS
         [DisplayName("supportedStandards")]
         public static string[] SupportedStandards()
         {
-            string[] result = { "NEP-5", "NEP-10", "NEP-1234" };
+            string[] result = { "NEP-5", "NEP-7", "NEP-10" };
             return result;
         }
 
